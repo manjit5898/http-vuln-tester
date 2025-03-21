@@ -1,0 +1,128 @@
+# HTTP Vulnerability Tester
+
+## Description
+HTTP Vulnerability Tester is a Python tool designed to identify security weaknesses in web applications by analyzing HTTP methods and authentication mechanisms. It supports:
+
+✅ **Enumerating Supported HTTP Methods** (OPTIONS request)
+✅ **Testing for Access Control Bypass**
+✅ **Detecting Cross-Site Tracing (XST) Vulnerabilities**
+✅ **Checking HTTP Method Overriding Techniques**
+✅ **Exploiting PUT Method (if enabled)**
+✅ **Handling Authentication for Accurate Testing**
+
+## Features
+- Uses **dynamic login session handling** to prevent false positives.
+- Tests HTTP vulnerabilities with an **automated approach**.
+- Supports **single URLs and bulk URL testing**.
+
+## Installation
+### **Prerequisites**
+- Python 3.x
+- `requests` module
+- Windows PowerShell 5.1 or later (pre-installed on Windows 10/11)
+- Administrator privileges for some network requests
+
+### **Clone the Repository**
+#### **Linux & macOS**
+```sh
+git clone https://github.com/YOUR_USERNAME/http-vuln-tester.git
+cd http-vuln-tester
+```
+
+#### **Windows (PowerShell)**
+```powershell
+git clone https://github.com/YOUR_USERNAME/http-vuln-tester.git
+cd http-vuln-tester
+```
+
+### **Install Dependencies**
+#### **Linux & macOS**
+```sh
+pip install -r requirements.txt
+```
+
+#### **Windows (PowerShell)**
+```powershell
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### **Additional Setup for Windows**
+- If `pip` is not recognized, ensure Python is added to your system's PATH.
+- To check Python installation, run:
+  ```powershell
+  python --version
+  ```
+- To check if `pip` is installed:
+  ```powershell
+  python -m ensurepip --default-pip
+  ```
+- If needed, install `git` from [Git for Windows](https://git-scm.com/download/win).
+
+## Usage
+### **Single URL Testing**
+#### **Linux & macOS**
+```sh
+python http_vuln_tester.py --url https://target.com --login login-request.txt
+```
+
+#### **Windows (PowerShell)**
+```powershell
+python http_vuln_tester.py --url https://target.com --login login-request.txt
+```
+
+### **Testing Multiple URLs**
+#### **Linux & macOS**
+```sh
+python http_vuln_tester.py --list urls.txt --login login-request.txt
+```
+
+#### **Windows (PowerShell)**
+```powershell
+python http_vuln_tester.py --list urls.txt --login login-request.txt
+```
+
+## Example Files
+### **Example `login-request.txt`**
+```
+POST /login HTTP/1.1
+Host: target.com
+Content-Type: application/json
+
+{"username": "admin", "password": "password123"}
+```
+
+### **Example `urls.txt`**
+```
+https://target1.com
+https://target2.com
+https://target3.com
+```
+
+## Features Explained
+### **1. Enumerating HTTP Methods**
+- Uses an OPTIONS request to list supported HTTP methods.
+- Identifies misconfigured servers allowing dangerous methods like PUT or DELETE.
+
+### **2. Testing for Access Control Bypass**
+- Attempts to access restricted pages without authentication.
+- Checks response codes and content to detect security flaws.
+
+### **3. Detecting Cross-Site Tracing (XST) Vulnerabilities**
+- Sends TRACE requests to detect if reflection attacks are possible.
+- Identifies misconfigurations in server settings.
+
+### **4. Checking HTTP Method Overriding Techniques**
+- Uses headers like `X-HTTP-Method-Override` to test method spoofing.
+- Detects possible privilege escalation vulnerabilities.
+
+### **5. Testing HTTP PUT Method**
+- Attempts to upload a test file using the PUT method.
+- Confirms success by retrieving the uploaded file.
+
+## Disclaimer
+This tool is for **educational and security testing purposes only**. Use it **only on applications you have permission to test**! Unauthorized testing may violate legal and ethical guidelines.
+
+## License
+This project is licensed under the **MIT License**.
+
