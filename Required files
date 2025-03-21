@@ -1,0 +1,7 @@
+These files are required with the same name poot the data in the files and read the readme.txt file for the user guide
+
+│── http_vuln_tester.py   # Main Python script
+│── README.md             # Documentation
+│── login-request.txt     # Example login request file
+│── urls.txt              # Example list of target URLs
+│── .gitignore            # Ignore unnecessary files
